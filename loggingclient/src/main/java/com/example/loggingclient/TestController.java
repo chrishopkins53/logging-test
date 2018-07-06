@@ -1,10 +1,14 @@
 package com.example.loggingclient;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Random;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Slf4j
 @RestController
@@ -17,8 +21,8 @@ public class TestController {
     }
 
     @RequestMapping("/")
-    public String home() {
-        log.info("Handling home");
+    public String random() {
+        log.info("Handling random");
 
         Random r = new Random();
 
@@ -26,6 +30,23 @@ public class TestController {
 
         log.info("Requesting number " + requestNumber);
 
+        return getStringNumber(requestNumber);
+
+    }
+
+    @GetMapping(value = "/{number}", produces = APPLICATION_JSON_VALUE)
+    public String getNumber(@PathVariable int number) {
+
+        String requestNumber = String.valueOf(number);
+
+        log.info("Requesting number " + requestNumber);
+
+        return getStringNumber(requestNumber);
+
+
+    }
+
+    private String getStringNumber(String requestNumber) {
         try {
             String result = apiService.getStringNumber(requestNumber);
             return "Returned number: " + result;
@@ -33,16 +54,8 @@ public class TestController {
 
             log.error("Number api failed", e);
 
-            return null;
+            return "Bad number";
         }
-
-
-        //Widget widget = new Widget();
-        //widget.doSomething();
-
-
-        //todo: pick a random number, call the other service, return the response
     }
-
 
 }

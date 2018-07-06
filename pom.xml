@@ -18,6 +18,8 @@
     <modules>
         <module>loggingclient</module>
         <module>loggingserver</module>
+        <module>loggingserver2</module>
+        <module>loggingserver3</module>
     </modules>
 
     <build>
