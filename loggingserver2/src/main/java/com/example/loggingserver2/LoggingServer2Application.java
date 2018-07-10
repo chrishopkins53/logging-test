@@ -34,13 +34,13 @@ public class LoggingServer2Application {
 
         switch (number) {
 
-            case 3:
+            case 4:
                 return "four";
 
-            case 4:
+            case 5:
                 return "five";
 
-            case 5:
+            case 6:
                 return "six";
 
             default:

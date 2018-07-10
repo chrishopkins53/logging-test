@@ -50,16 +50,14 @@
                 <pattern>
                     <pattern>
                         {
-                        "severity": "%level",
-                        "service": "${springAppName:-}",
+                        "lvl": "%level",
+                        "app": "${springAppName:-}",
+                        "comp": "%logger{40}",
+                        "v": "coming soon",
+                        "msg": "%message",
+                        "export": "%X{X-Span-Export:-}",
                         "trace": "%X{X-B3-TraceId:-}",
-                        "span": "%X{X-B3-SpanId:-}",
-                        "parent": "%X{X-B3-ParentSpanId:-}",
-                        "exportable": "%X{X-Span-Export:-}",
-                        "pid": "${PID:-}",
-                        "thread": "%thread",
-                        "class": "%logger{40}",
-                        "rest": "%message"
+                        "span": "%X{X-B3-SpanId:-}"
                         }
                     </pattern>
                 </pattern>
