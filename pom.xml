@@ -20,6 +20,7 @@
         <module>loggingserver</module>
         <module>loggingserver2</module>
         <module>loggingserver3</module>
+        <module>logginglistener</module>
     </modules>
 
     <build>
