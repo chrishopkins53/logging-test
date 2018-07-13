@@ -16,9 +16,11 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class TestController {
 
     private ApiService apiService;
+    private WordSender sender;
 
-    public TestController(ApiService apiService) {
+    public TestController(ApiService apiService, WordSender sender) {
         this.apiService = apiService;
+        this.sender = sender;
     }
 
     @RequestMapping("/")
@@ -50,7 +52,9 @@ public class TestController {
     private String getStringNumber(String requestNumber) {
         try {
             String result = apiService.getStringNumber(requestNumber);
+            sender.send(result);
             return "Returned number: " + result;
+
         } catch (Exception e){
 
             log.error("Number api failed", e);
